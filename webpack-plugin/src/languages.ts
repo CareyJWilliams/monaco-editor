@@ -30,6 +30,10 @@ export const languagesArr: IFeatureDefinition[] = [
 		entry: 'vs/basic-languages/cameligo/cameligo.contribution'
 	},
 	{
+		label: 'choicescript',
+		entry: 'vs/basic-languages/choicescript/choicescript.contribution'
+	},
+	{
 		label: 'clojure',
 		entry: 'vs/basic-languages/clojure/clojure.contribution'
 	},
@@ -341,6 +345,7 @@ export type EditorLanguage =
 	| 'bat'
 	| 'bicep'
 	| 'cameligo'
+	| 'choicescript'
 	| 'clojure'
 	| 'coffee'
 	| 'cpp'

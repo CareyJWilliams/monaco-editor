@@ -3,8 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { languages } from '../fillers/monaco-editor-core';
-
+import { languages, editor } from '../fillers/monaco-editor-core';
+import IStandaloneThemeData = editor.IStandaloneThemeData;
 interface ILang extends languages.ILanguageExtensionPoint {
 	loader: () => Promise<ILangImpl>;
 }
@@ -76,4 +76,8 @@ export function registerLanguage(def: ILang): void {
 			languages.setLanguageConfiguration(languageId, mod.conf);
 		});
 	});
+}
+
+export function registerTheme(themeName: string, themeData: IStandaloneThemeData): void {
+	editor.defineTheme(themeName, themeData);
 }
