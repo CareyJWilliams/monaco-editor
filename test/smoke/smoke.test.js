@@ -175,6 +175,24 @@ suite(`Smoke Test '${TESTS_TYPE}' on '${browserType}'`, () => {
 		// check that the TypeScript worker exposes the full `ts` as a global
 		assert.strictEqual(await tsWorker.evaluate(`typeof ts.optionDeclarations`), 'object');
 	});
+
+	test('choicescript smoke test', async () => {
+		await createEditor('*c\\nmeespelt word', 'choicescript');
+
+		// check that a squiggle appears, which indicates that the language service is up and running
+		await page.waitForSelector('.squiggly-error');
+
+		// check that nspell is functioning correctly
+		await page.waitForSelector('.squiggly-info');
+
+		// trigger suggestions
+		await focusEditor();
+		await setEditorPosition(1, 3);
+		await triggerEditorCommand('editor.action.triggerSuggest');
+
+		// check that a suggestion item for `choice` appears, which indicates that the language service is up and running
+		await page.waitForSelector(`text=choice`);
+	});
 });
 
 function timeout(ms) {

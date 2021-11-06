@@ -70,6 +70,18 @@
 					min: './min',
 					esm: './esm'
 				}
+			},
+			{
+				name: 'monaco-choicescript',
+				contrib: 'vs/language/choicescript/monaco.contribution',
+				modulePrefix: 'vs/language/choicescript',
+				rootPath: './out/release/choicescript',
+				paths: {
+					// use ./ to indicate it is relative to the `rootPath`
+					dev: './dev',
+					min: './min',
+					esm: './esm'
+				}
 			}
 		]
 	};

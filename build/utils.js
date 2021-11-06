@@ -223,12 +223,14 @@ exports.buildESM = buildESM;
  *   entryPoint: string;
  *   amdModuleId: string;
  *   amdDependencies?: string[];
+ *   external?: string[];
  * }} options
  */
 function buildOneAMD(type, options) {
 	/** @type {import('esbuild').BuildOptions} */
 	const opts = {
 		entryPoints: [options.entryPoint],
+		external: options.external,
 		bundle: true,
 		target: 'esnext',
 		format: 'iife',
@@ -265,6 +267,7 @@ function buildOneAMD(type, options) {
  *   entryPoint: string;
  *   amdModuleId: string;
  *   amdDependencies?: string[];
+ *   external?: string[];
  * }} options
  */
 function buildAMD(options) {

@@ -31,7 +31,14 @@ export const languagesArr: IFeatureDefinition[] = [
 	},
 	{
 		label: 'choicescript',
-		entry: 'vs/basic-languages/choicescript/choicescript.contribution'
+		entry: [
+			'vs/basic-languages/choicescript/choicescript.contribution',
+			'vs/language/choicescript/monaco.contribution'
+		],
+		worker: {
+			id: 'vs/language/choicescript/choicescriptWorker',
+			entry: 'vs/language/choicescript/choicescript.worker'
+		}
 	},
 	{
 		label: 'clojure',

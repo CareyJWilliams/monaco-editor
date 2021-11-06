@@ -7746,3 +7746,117 @@ declare namespace monaco.languages.html {
     }
     export type MarkupKind = 'plaintext' | 'markdown';
 }
+
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+declare namespace monaco.languages.choicescript {
+    type UserDictionaryEntry = {
+        [key: string]: boolean;
+    };
+    type UserDictionary = {
+        [key: string]: UserDictionaryEntry;
+    };
+    const enum SpellCheckDictionary {
+        EN_US = "en_US",
+        EN_GB = "en_GB"
+    }
+    export interface SpellCheckSettings {
+        paths: {
+            affix: string;
+            dics: string[];
+        };
+        enabled: boolean;
+        dictionary: SpellCheckDictionary;
+        userDictionary: UserDictionary;
+        suggestLimit?: number;
+    }
+    export interface DictionaryEvent {
+        words: string[];
+        removed: boolean;
+        dictionary: string;
+    }
+    export interface LanguageServiceDefaults {
+        readonly languageId: string;
+        readonly onDidChange: IEvent<LanguageServiceDefaults>;
+        readonly onDictionaryChange: IEvent<DictionaryEvent>;
+        readonly diagnosticsOptions: DiagnosticsOptions;
+        readonly modeConfiguration: ModeConfiguration;
+        addDictWords(dict: string, words: String[]): void;
+        removeDictWords(dict: string, words: String[]): void;
+        setDiagnosticsOptions(options: DiagnosticsOptions): void;
+        setModeConfiguration(modeConfiguration: ModeConfiguration): void;
+    }
+    export interface DiagnosticsOptions {
+        readonly validate: boolean;
+        readonly lint: {
+            readonly enabled: boolean;
+        };
+        readonly spellcheck: SpellCheckSettings;
+    }
+    export interface ModeConfiguration {
+        /**
+         * Defines whether the built-in documentFormattingEdit provider is enabled.
+         */
+        readonly documentFormattingEdits?: boolean;
+        /**
+         * Defines whether the built-in documentRangeFormattingEdit provider is enabled.
+         */
+        readonly documentRangeFormattingEdits?: boolean;
+        /**
+         * Defines whether the built-in completionItemProvider is enabled.
+         */
+        readonly completionItems?: boolean;
+        /**
+         * Defines whether the built-in hoverProvider is enabled.
+         */
+        readonly hovers?: boolean;
+        /**
+         * Defines whether the built-in documentSymbolProvider is enabled.
+         */
+        readonly documentSymbols?: boolean;
+        /**
+         * Defines whether the built-in definitions provider is enabled.
+         */
+        readonly definitions?: boolean;
+        /**
+         * Defines whether the built-in references provider is enabled.
+         */
+        readonly references?: boolean;
+        /**
+         * Defines whether the built-in tokens provider is enabled.
+         */
+        readonly tokens?: boolean;
+        /**
+         * Defines whether the built-in references provider is enabled.
+         */
+        readonly documentHighlights?: boolean;
+        /**
+         * Defines whether the built-in rename provider is enabled.
+         */
+        readonly rename?: boolean;
+        /**
+         * Defines whether the built-in color provider is enabled.
+         */
+        readonly colors?: boolean;
+        /**
+         * Defines whether the built-in foldingRange provider is enabled.
+         */
+        readonly foldingRanges?: boolean;
+        /**
+         * Defines whether the built-in diagnostic provider is enabled.
+         */
+        readonly diagnostics?: boolean;
+        /**
+         * Defines whether the built-in selection range provider is enabled.
+         */
+        readonly selectionRanges?: boolean;
+        /**
+         * Defines whether the built-in format provider is enabled.
+         */
+        readonly autoFormat?: boolean;
+    }
+    export const choicescriptDefaults: LanguageServiceDefaults;
+}
