@@ -5,6 +5,7 @@
 
 import * as mode from './jsonMode';
 import { Emitter, IEvent, languages } from '../fillers/monaco-editor-core';
+import { monacoThemeSchema } from './monaco-theme-schema';
 
 // --- JSON configuration and defaults ---------
 
@@ -129,6 +130,9 @@ class LanguageServiceDefaultsImpl implements LanguageServiceDefaults {
 	private _diagnosticsOptions!: DiagnosticsOptions;
 	private _modeConfiguration!: ModeConfiguration;
 	private _languageId: string;
+	public builtinSchemas: {} = {
+		monacoTheme: monacoThemeSchema
+	};
 
 	constructor(
 		languageId: string,
