@@ -4,7 +4,10 @@
 /webpack-plugin/
 /monaco-editor/
 /node_modules/
-/build/
+/build/fillers/
+/build/importTypescript.js
+/build/utils.js
+/build/build.js
 /test/
 /out/
 /src/
