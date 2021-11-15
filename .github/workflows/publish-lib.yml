@@ -1,13 +1,12 @@
-name: CI
+name: publish-lib
 
 on:
   push:
-  pull_request:
+    branches: [lib]
   workflow_dispatch:
 
 jobs:
-  build:
-    name: CI
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -46,3 +45,8 @@ jobs:
 
       - name: Run smoke test
         run: npm run smoketest
+
+      - name: Publish
+        run: |
+          git update-index --refresh || true
+          if ! git diff-index --quiet HEAD --; then git add release && git commit -m "Automatic build triggered by $GITHUB_SHA" && git push origin lib; fi
