@@ -181,7 +181,7 @@ exports.build = build;
  * @param {{
  *   base: string;
  *   entryPoints: string[];
- *   external: string[];
+ *   external?: string[];
  * }} options
  */
 function buildESM(options) {
@@ -196,7 +196,7 @@ function buildESM(options) {
 		banner: {
 			js: bundledFileHeader
 		},
-		external: options.external,
+		external: options.external ? options.external : [],
 		outbase: `src/${options.base}`,
 		outdir: `out/release/${options.base}/esm/`,
 		plugins: [
@@ -215,11 +215,13 @@ exports.buildESM = buildESM;
  *   entryPoint: string;
  *   amdModuleId: string;
  *   amdDependencies?: string[];
+ *   external?: string[];
  * }} options
  */
 function buildOneAMD(type, options) {
 	/** @type {import('esbuild').BuildOptions} */
 	const opts = {
+		external: options.external ? options.external : [],
 		entryPoints: [options.entryPoint],
 		bundle: true,
 		target: 'esnext',
@@ -257,6 +259,7 @@ function buildOneAMD(type, options) {
  *   entryPoint: string;
  *   amdModuleId: string;
  *   amdDependencies?: string[];
+ *   external?: string[];
  * }} options
  */
 function buildAMD(options) {

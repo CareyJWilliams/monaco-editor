@@ -30,6 +30,11 @@ dts(
 	`out/release/typescript/monaco.d.ts`,
 	'monaco.languages.typescript'
 );
+dts(
+	`out/amd/choicescript/monaco.contribution.d.ts`,
+	`out/release/choicescript/monaco.d.ts`,
+	'monaco.languages.choicescript'
+);
 
 //#endregion
 
@@ -150,6 +155,39 @@ buildAMD({
 	base: 'typescript',
 	entryPoint: 'src/typescript/tsWorker.ts',
 	amdModuleId: 'vs/language/typescript/tsWorker'
+});
+
+//#endregion
+
+//#region choicescript
+
+buildESM({
+	base: 'choicescript',
+	entryPoints: [
+		'src/choicescript/monaco.contribution.ts',
+		'src/choicescript/choicescriptMode.ts',
+		'src/choicescript/choicescript.worker.ts'
+	],
+	external: ['monaco-editor-core', '*/choicescriptMode', 'fs']
+});
+buildAMD({
+	base: 'choicescript',
+	entryPoint: 'src/choicescript/monaco.contribution.ts',
+	amdModuleId: 'vs/language/choicescript/monaco.contribution',
+	amdDependencies: ['vs/editor/editor.api'],
+	external: ['fs']
+});
+buildAMD({
+	base: 'choicescript',
+	entryPoint: 'src/choicescript/choicescriptMode.ts',
+	amdModuleId: 'vs/language/choicescript/choicescriptMode',
+	external: ['fs']
+});
+buildAMD({
+	base: 'choicescript',
+	entryPoint: 'src/choicescript/choicescriptWorker.ts',
+	amdModuleId: 'vs/language/choicescript/choicescriptWorker',
+	external: ['fs']
 });
 
 //#endregion
