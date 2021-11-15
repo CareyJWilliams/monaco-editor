@@ -158,6 +158,21 @@ describe('Smoke Test', () => {
 		// check that a suggestion item for `addEventListener` appears, which indicates that the language service is up and running
 		await page.waitForSelector(`text=addEventListener`);
 	});
+
+	it('choicescript smoke test', async () => {
+		await createEditor('*c', 'choicescript');
+
+		// check that a squiggle appears, which indicates that the language service is up and running
+		await page.waitForSelector('.squiggly-error');
+
+		// trigger suggestions
+		await focusEditor();
+		await setEditorPosition(1, 3);
+		await triggerEditorCommand('editor.action.triggerSuggest');
+
+		// check that a suggestion item for `choice` appears, which indicates that the language service is up and running
+		await page.waitForSelector(`text=choice`);
+	});
 });
 
 function timeout(ms) {
