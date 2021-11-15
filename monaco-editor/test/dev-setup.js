@@ -73,7 +73,7 @@
 			if (IS_FILE_PROTOCOL) {
 				resolvedPath = DIRNAME + '/../' + this.rootPath + '/' + resolvedPath;
 			} else {
-				resolvedPath = PATH_PREFIX + '/monaco-editor/' + this.rootPath + '/' + resolvedPath;
+				resolvedPath = PATH_PREFIX + '/' + this.rootPath + '/' + resolvedPath;
 			}
 		} else if (
 			this.selectedPath === 'npm/dev' ||
@@ -83,7 +83,7 @@
 			if (IS_FILE_PROTOCOL) {
 				resolvedPath = DIRNAME + '/../' + resolvedPath;
 			} else {
-				resolvedPath = PATH_PREFIX + '/monaco-editor/' + resolvedPath;
+				resolvedPath = PATH_PREFIX + '/' + resolvedPath;
 			}
 		} else {
 			if (IS_FILE_PROTOCOL) {
